@@ -12,14 +12,14 @@ class EveryBoxes extends StatelessWidget{
       child: Container(
           child:Column(
             children: <Widget>[
-              Image.asset(image, width: 100, height: 100,),
+              Image.asset(image, width: 100, height: 80,),
               Text(title, style: TextStyle(fontSize: 20, fontFamily: 'Roboto',),),
               Text(number.toString(), style: TextStyle(fontSize: 20, fontFamily: 'Roboto',),),
             ],
           ),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,

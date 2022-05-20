@@ -14,6 +14,10 @@ class DigitalGoodsRow extends StatelessWidget {
             image: 'assets/images/laptop.jpg',
             number: 100,
           ),
+          SizedBox(
+            width: 15,
+          ),
+
           EveryBoxes(
             title: 'Mobile',
             image: 'assets/images/mobile.jpg',

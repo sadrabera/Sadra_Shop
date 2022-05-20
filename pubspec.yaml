@@ -61,6 +61,8 @@ flutter:
   assets:
       - assets/images/laptop.jpg
       - assets/images/mobile.jpg
+      - assets/images/tv.jpg
+      - assets/images/camera.jpg
 #     - assets/images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

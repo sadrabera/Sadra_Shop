@@ -68,6 +68,13 @@ flutter:
       - assets/images/women_clothes.jpg
       - assets/images/women_shoes.jpeg
       - assets/images/children_clothes.jpg
+      - assets/images/book.jpg
+      - assets/images/stationary.jpg
+      - assets/images/music.jpg
+      - assets/images/handicrafts.jpg
+      - assets/images/sport_clothes.jpeg
+      - assets/images/sporting_goods.jpg
+      - assets/images/travel_camping_equipment.jpg
 #     - assets/images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

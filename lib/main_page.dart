@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/rows_in_main_page/books_stationary.dart';
 import 'package:untitled/rows_in_main_page/boxes.dart';
 import 'package:untitled/rows_in_main_page/clothes_goods.dart';
 import 'package:untitled/rows_in_main_page/digital_goods.dart';
@@ -17,11 +17,12 @@ class MyMainPage extends StatelessWidget {
           children: [
             hereText('Digital goods'),
             DigitalGoodsRow(),
-            const SizedBox(
-              height: 40,
-            ),
+
             hereText('Clothes goods'),
             ClothesGoods(),
+            hereText('Books and stationary'),
+            BooksStationary(),
+
 
           ],
           crossAxisAlignment: CrossAxisAlignment.start,

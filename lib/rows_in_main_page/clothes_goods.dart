@@ -43,10 +43,9 @@ class ClothesGoods extends StatelessWidget {
             width: 20,
           ),
           EveryBoxes(
-            title: 'Children\'s fashion',
+            title: 'Kids fashion',
             image: 'assets/images/children_clothes.jpg',
             number: 100,
-            fontSize: 13,
           ),
 
         ],

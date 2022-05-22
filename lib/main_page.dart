@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/rows_in_main_page/advettisment.dart';
 import 'package:untitled/rows_in_main_page/books_stationary.dart';
 import 'package:untitled/rows_in_main_page/boxes.dart';
 import 'package:untitled/rows_in_main_page/clothes_goods.dart';
@@ -15,11 +16,12 @@ class MyMainPage extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            hereText('Digital goods'),
+            hereText('Digitals'),
             DigitalGoodsRow(),
-
-            hereText('Clothes goods'),
+            Advertisement(imageAddress: 'assets/images/adv.jpg'),
+            hereText('Clothes fashion'),
             ClothesGoods(),
+            Advertisement(imageAddress: 'assets/images/adv2.jpg'),
             hereText('Books and stationary'),
             BooksStationary(),
 

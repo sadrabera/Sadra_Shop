@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'boxes.dart';
 
 class SportTrip extends StatelessWidget {
+  Map allSportTrip;
+  SportTrip({Key? key ,required this.allSportTrip }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -14,6 +16,7 @@ class SportTrip extends StatelessWidget {
             image: 'assets/images/sport_clothes.jpeg',
             number: 100,
             fontSize: 15,
+            data: allSportTrip["SportClothes"],
           ),
           const SizedBox(
             width: 20,
@@ -22,14 +25,16 @@ class SportTrip extends StatelessWidget {
             title: 'Sport Goods',
             image: 'assets/images/sport_goods.jpg',
             number: 100,
+            data: allSportTrip["Sport Goods"],
           ),
           SizedBox(
             width: 20,
           ),
           EveryBoxes(
-            title: 'Music',
+            title: 'Camping equipment',
             image: 'assets/images/travel_camping_equipment.jpg',
             number: 100,
+            data: allSportTrip["Music"],
           ),
 
 

@@ -1,11 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/buy_page.dart';
 
-class EveryBoxes extends StatelessWidget{
-   String title, image;
-   int number;
-   double? fontSize;
-   EveryBoxes({ required this.title, required this.image, required this.number,this.fontSize});
+class EveryBoxes extends StatelessWidget {
+  String title, image;
+  int number;
+  double? fontSize;
+  List data;
+
+  EveryBoxes(
+      {Key? key, required this.title,
+      required this.image,
+      required this.number,
+      this.fontSize,
+      required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +23,30 @@ class EveryBoxes extends StatelessWidget{
         width: 105,
         height: 130,
         child: Container(
-            child:Column(
-              children: <Widget>[
-                Image.asset(image, width: 90, height: 80,),
-                SizedBox(
-                  height: 10,
+          child: Column(
+            children: <Widget>[
+              Image.asset(
+                image,
+                width: 90,
+                height: 80,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontFamily: 'Roboto',
                 ),
-                Text(title, style: TextStyle(fontSize: fontSize, fontFamily: 'Roboto',),),
-                Text("+"+number.toString(), style: TextStyle(fontSize: 15, fontFamily: 'Roboto',color: Colors.green),),
-              ],
-            ),
+              ),
+              Text(
+                "+" + number.toString(),
+                style: TextStyle(
+                    fontSize: 15, fontFamily: 'Roboto', color: Colors.green),
+              ),
+            ],
+          ),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),
@@ -38,11 +60,15 @@ class EveryBoxes extends StatelessWidget{
           ),
         ),
       ),
-      onTap: (){
-        print('click');
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return BuyPage(title: title, data: data);
+            },
+          ),
+        );
       },
     );
-
   }
-
 }

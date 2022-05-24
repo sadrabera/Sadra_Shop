@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'boxes.dart';
 
 class DigitalGoodsRow extends StatelessWidget {
+  Map allDigitalGoods;
+  DigitalGoodsRow( {Key? key ,required this.allDigitalGoods }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -14,31 +16,35 @@ class DigitalGoodsRow extends StatelessWidget {
             title: 'Laptop',
             image: 'assets/images/laptop.jpg',
             number: 100,
+            data: allDigitalGoods['Laptop'],
           ),
           SizedBox(
             width: 20,
           ),
-          EveryBoxes(
-            title: 'Mobile',
-            image: 'assets/images/mobile.jpg',
-            number: 100,
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          EveryBoxes(
-            title: 'TV',
-            image: 'assets/images/tv.jpg',
-            number: 100,
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          EveryBoxes(
-            title: 'Camera',
-            image: 'assets/images/camera.jpg',
-            number: 100,
-          ),
+          // EveryBoxes(
+          //   title: 'Mobile',
+          //   image: 'assets/images/mobile.jpg',
+          //   number: 100,
+          //   data: allDigitalGoods['Mobile'],
+          // ),
+          // SizedBox(
+          //   width: 20,
+          // ),
+          // EveryBoxes(
+          //   title: 'TV',
+          //   image: 'assets/images/tv.jpg',
+          //   number: 100,
+          //   data: allDigitalGoods['TV'],
+          // ),
+          // SizedBox(
+          //   width: 20,
+          // ),
+          // EveryBoxes(
+          //   title: 'Camera',
+          //   image: 'assets/images/camera.jpg',
+          //   number: 100,
+          //   data: allDigitalGoods['Camera'],
+          // ),
 
         ],
 

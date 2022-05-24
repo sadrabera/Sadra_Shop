@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'boxes.dart';
 
 class BooksStationary extends StatelessWidget {
+  Map allBooksStationary;
+  BooksStationary({Key? key ,required this.allBooksStationary }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -14,6 +16,7 @@ class BooksStationary extends StatelessWidget {
             image: 'assets/images/book.jpg',
             number: 100,
             fontSize: 15,
+            data: allBooksStationary["Book"],
           ),
           const SizedBox(
             width: 20,
@@ -22,6 +25,7 @@ class BooksStationary extends StatelessWidget {
             title: 'Stationary',
             image: 'assets/images/stationary.jpg',
             number: 100,
+            data: allBooksStationary["Stationary"],
           ),
           SizedBox(
             width: 20,
@@ -30,6 +34,7 @@ class BooksStationary extends StatelessWidget {
             title: 'Music',
             image: 'assets/images/music.jpg',
             number: 100,
+            data: allBooksStationary["Music"],
           ),
           SizedBox(
             width: 20,
@@ -38,6 +43,7 @@ class BooksStationary extends StatelessWidget {
             title: 'Handicrafts',
             image: 'assets/images/handicrafts.jpg',
             number: 100,
+            data: allBooksStationary["Handicrafts"],
           ),
 
 

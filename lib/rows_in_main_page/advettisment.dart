@@ -12,7 +12,7 @@ class Advertisement extends StatelessWidget {
       Center(
         child: Container(
           child: SizedBox(
-            width: MediaQuery.of(context).size.width-40,
+            width: MediaQuery.of(context).size.width,//-40
             height: MediaQuery.of(context).size.height / 3,
             child: Image.asset(imageAddress,
                 fit: BoxFit.fill),

@@ -2,10 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:untitled/main_page.dart';
 
 void main() {
-  runApp(MyApp());
+  Map<String, dynamic> allData = {
+    "Digital": {
+      "Laptop": [
+        {
+          "title": "Lenovo",
+          "price": "200",
+          "description":
+              "Lenovo is a brand ",
+          "image": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
+          "rate": "4.5",
+        },
+        {
+          "title": "Dell",
+          "price": "300",
+          "description":
+              "Dell is a brand ",
+          "rate": "4.5",
+          "image": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
+        },
+        {
+          "title": "HP",
+          "price": "400",
+          "description":
+              "HP is a brand ",
+          "image": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
+          "rate": "4.5",
+
+        }
+      ],
+    },
+    "Clothes": {
+      "Men fashion": [{}]
+    },
+    "BookStationary": {}
+  };
+  runApp(MyApp(
+    allData: allData,
+  ));
 }
 
 class MyApp extends StatelessWidget {
+  Map allData;
+
+  MyApp({Key? key, required this.allData}) : super(key: key);
+
+  // This widget is the root of my application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,15 +58,17 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.orange,
-          title:  Text('Sadra Shop'),
+          title: const Text('Sadra Shop'),
           actions: [
             IconButton(
-              icon:  Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
               onPressed: () {},
             ),
           ],
         ),
-        body:  MyMainPage(),
+        body: MyMainPage(
+          allData: allData,
+        ),
       ),
     );
   }

@@ -76,7 +76,7 @@ flutter:
       - assets/images/sporting_goods.jpg
       - assets/images/travel_camping_equipment.jpg
       - assets/images/adv.jpg
-      - assets/images/adv2.jpg
+      - assets/images/adv2.png
 #     - assets/images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -11,6 +11,7 @@ class Advertisement extends StatelessWidget {
     return Column(children: <Widget>[
       Center(
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 5),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,//-40
             height: MediaQuery.of(context).size.height / 3,

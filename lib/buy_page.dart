@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:untitled/every_good_buy_page.dart';
 
 class BuyPage extends StatelessWidget {
   String title;
@@ -83,7 +84,15 @@ class BuyPage extends StatelessWidget {
                           ),
                         ),
                       ]),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => EveryGoodBuyPage(
+                              data: hereGoods[index],
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     ButtonBar(
                       children: [

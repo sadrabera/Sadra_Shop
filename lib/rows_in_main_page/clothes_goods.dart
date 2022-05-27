@@ -11,48 +11,49 @@ class ClothesGoods extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: <Widget>[
-          EveryBoxes(
-            title: 'Men fashion',
+          MainBoxes(
+            title: 'Men Fashion',
             image: 'assets/images/men_clothes.jpg',
             number: 100,
             fontSize: 15,
-            data: allClothesGoods["Men fashion"],
+            data: allClothesGoods["Men Fashion"],
           ),
           const SizedBox(
             width: 20,
           ),
-          EveryBoxes(
-            title: 'Women fashion',
+          MainBoxes(
+            title: 'Women Fashion',
             image: 'assets/images/women_clothes.jpg',
             number: 100,
-            data: allClothesGoods["Women fashion"],
+            fontSize: 14,
+            data: allClothesGoods["Women Fashion"],
           ),
           SizedBox(
             width: 20,
           ),
-          EveryBoxes(
-            title: 'Women shoes',
+          MainBoxes(
+            title: 'Women Shoes',
             image: 'assets/images/women_shoes.jpeg',
             number: 100,
-            data: allClothesGoods["Women shoes"],
+            data: allClothesGoods["Women Shoes"],
           ),
           SizedBox(
             width: 20,
           ),
-          EveryBoxes(
+          MainBoxes(
             title: 'Men shoes',
             image: 'assets/images/men_shoes.jpg',
             number: 100,
-            data: allClothesGoods["Men shoes"],
+            data: allClothesGoods["Men Shoes"],
           ),
           SizedBox(
             width: 20,
           ),
-          EveryBoxes(
+          MainBoxes(
             title: 'Kids fashion',
             image: 'assets/images/children_clothes.jpg',
             number: 100,
-            data: allClothesGoods["Kids fashion"],
+            data: allClothesGoods["Kid Fashion"],
           ),
 
         ],

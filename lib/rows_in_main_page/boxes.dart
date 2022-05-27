@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/buy_page.dart';
 
-class EveryBoxes extends StatelessWidget {
+class MainBoxes extends StatelessWidget {
   String title, image;
   int number;
   double? fontSize;
   List data;
 
-  EveryBoxes(
+  MainBoxes(
       {Key? key, required this.title,
       required this.image,
       required this.number,

@@ -11,17 +11,17 @@ class SportTrip extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: <Widget>[
-          EveryBoxes(
-            title: 'SportClothes',
+          MainBoxes(
+            title: 'Sport Clothes',
             image: 'assets/images/sport_clothes.jpeg',
             number: 100,
             fontSize: 15,
-            data: allSportTrip["SportClothes"],
+            data: allSportTrip["Sport Clothes"],
           ),
           const SizedBox(
             width: 20,
           ),
-          EveryBoxes(
+          MainBoxes(
             title: 'Sport Goods',
             image: 'assets/images/sport_goods.jpg',
             number: 100,
@@ -30,11 +30,11 @@ class SportTrip extends StatelessWidget {
           SizedBox(
             width: 20,
           ),
-          EveryBoxes(
-            title: 'Camping equipment',
+          MainBoxes(
+            title: 'Camping Equipment',
             image: 'assets/images/travel_camping_equipment.jpg',
             number: 100,
-            data: allSportTrip["Music"],
+            data: allSportTrip["Camping Equipment"],
           ),
 
 

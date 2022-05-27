@@ -12,7 +12,7 @@ class DigitalGoodsRow extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: <Widget>[
-          EveryBoxes(
+          MainBoxes(
             title: 'Laptop',
             image: 'assets/images/laptop.jpg',
             number: 100,
@@ -21,30 +21,30 @@ class DigitalGoodsRow extends StatelessWidget {
           SizedBox(
             width: 20,
           ),
-          // EveryBoxes(
-          //   title: 'Mobile',
-          //   image: 'assets/images/mobile.jpg',
-          //   number: 100,
-          //   data: allDigitalGoods['Mobile'],
-          // ),
-          // SizedBox(
-          //   width: 20,
-          // ),
-          // EveryBoxes(
-          //   title: 'TV',
-          //   image: 'assets/images/tv.jpg',
-          //   number: 100,
-          //   data: allDigitalGoods['TV'],
-          // ),
-          // SizedBox(
-          //   width: 20,
-          // ),
-          // EveryBoxes(
-          //   title: 'Camera',
-          //   image: 'assets/images/camera.jpg',
-          //   number: 100,
-          //   data: allDigitalGoods['Camera'],
-          // ),
+          MainBoxes(
+            title: 'Mobile',
+            image: 'assets/images/mobile.jpg',
+            number: 100,
+            data: allDigitalGoods['Mobile'],
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          MainBoxes(
+            title: 'TV',
+            image: 'assets/images/tv.jpg',
+            number: 100,
+            data: allDigitalGoods['TV'],
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          MainBoxes(
+            title: 'Camera',
+            image: 'assets/images/camera.jpg',
+            number: 100,
+            data: allDigitalGoods['Camera'],
+          ),
 
         ],
 

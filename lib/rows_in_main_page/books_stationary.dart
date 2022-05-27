@@ -11,7 +11,7 @@ class BooksStationary extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: <Widget>[
-          EveryBoxes(
+          MainBoxes(
             title: 'Book',
             image: 'assets/images/book.jpg',
             number: 100,
@@ -21,7 +21,7 @@ class BooksStationary extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          EveryBoxes(
+          MainBoxes(
             title: 'Stationary',
             image: 'assets/images/stationary.jpg',
             number: 100,
@@ -30,7 +30,7 @@ class BooksStationary extends StatelessWidget {
           SizedBox(
             width: 20,
           ),
-          EveryBoxes(
+          MainBoxes(
             title: 'Music',
             image: 'assets/images/music.jpg',
             number: 100,
@@ -39,7 +39,7 @@ class BooksStationary extends StatelessWidget {
           SizedBox(
             width: 20,
           ),
-          EveryBoxes(
+          MainBoxes(
             title: 'Handicrafts',
             image: 'assets/images/handicrafts.jpg',
             number: 100,

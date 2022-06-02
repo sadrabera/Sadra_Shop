@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:untitled/every_good_buy_page.dart';
+import 'package:untitled/details_page.dart';
 
 class BuyPage extends StatelessWidget {
   String title;
@@ -49,6 +49,10 @@ class BuyPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: hereGoods.length,
               itemBuilder: (BuildContext context, int index) {
+                String hereDescription = hereGoods[index].description;
+                if (hereDescription.length>40)  {
+                  hereDescription = hereDescription.substring(0,40)+'...';
+                }
                 return Card(
                   color: Colors.white,
                   shadowColor: Colors.black,
@@ -59,7 +63,7 @@ class BuyPage extends StatelessWidget {
                   child: Column(children: [
                     ListTile(
                       title: Text(hereGoods[index].title),
-                      subtitle: Text(hereGoods[index].description),
+                      subtitle: Text(hereDescription),
                       leading: Image.network(
                         hereGoods[index].image,
                         width: 100,

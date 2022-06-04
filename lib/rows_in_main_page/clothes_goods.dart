@@ -4,7 +4,9 @@ import 'boxes.dart';
 
 class ClothesGoods extends StatelessWidget {
   Map allClothesGoods;
-  ClothesGoods({Key? key ,required this.allClothesGoods }) : super(key: key);
+
+  ClothesGoods({Key? key, required this.allClothesGoods}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -55,11 +57,9 @@ class ClothesGoods extends StatelessWidget {
             number: 100,
             data: allClothesGoods["Kid Fashion"],
           ),
-
         ],
-
       ),
-      padding: EdgeInsets.only(left: 10, top: 10,bottom: 20),
+      padding: EdgeInsets.only(left: 10, top: 10, bottom: 20),
     );
   }
 }

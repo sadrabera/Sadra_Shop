@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:untitled/details_page.dart';
+import 'package:untitled/purchase_page.dart';
 
 class BuyPage extends StatelessWidget {
   String title;
@@ -39,7 +40,13 @@ class BuyPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => PurchasePage(),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -50,8 +57,8 @@ class BuyPage extends StatelessWidget {
               itemCount: hereGoods.length,
               itemBuilder: (BuildContext context, int index) {
                 String hereDescription = hereGoods[index].description;
-                if (hereDescription.length>40)  {
-                  hereDescription = hereDescription.substring(0,40)+'...';
+                if (hereDescription.length > 40) {
+                  hereDescription = hereDescription.substring(0, 40) + '...';
                 }
                 return Card(
                   color: Colors.white,
@@ -149,5 +156,3 @@ class Goods {
       required this.image,
       required this.rate});
 }
-
-

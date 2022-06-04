@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:untitled/buy_page.dart';
+import 'package:untitled/purchase_page.dart';
 
 class EveryGoodBuyPage extends StatefulWidget {
   Goods data;
@@ -51,7 +52,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
   int selectedColor = 0;
   int state = 0;
   int selectedSize = 0;
-  int satisfaction=0;
+  int satisfaction = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,13 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.shopping_cart),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => PurchasePage(),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -179,7 +186,6 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             ),
             SizedBox(
               height: 20,
-
             ),
             Text(
               'Comments:',
@@ -193,23 +199,19 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             SizedBox(
               height: 20,
             ),
-                Text(
-                  'Your Satisfaction:$satisfaction',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-
-                ),
-                Row(
-                    children:[
-                      for(int i=0;i<5;i++)
-                        voteBuilder(i+1),
-                    ]
-                ),
+            Text(
+              'Your Satisfaction:$satisfaction',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(children: [
+              for (int i = 0; i < 5; i++) voteBuilder(i + 1),
+            ]),
             SizedBox(
               height: 20,
             ),
@@ -218,11 +220,12 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
               maxLength: 55,
               maxLines: 2,
               onTap: () {
-               //TODO: check if user is logged in
+                //TODO: check if user is logged in
               },
               onFieldSubmitted: (value) {
                 print(value);
-              },//TODO: add comment to server
+              },
+              //TODO: add comment to server
               decoration: InputDecoration(
                 labelText: "Add your comment",
                 labelStyle: TextStyle(
@@ -238,7 +241,8 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
       ),
     );
   }
-  Row voteBuilder(int index){
+
+  Row voteBuilder(int index) {
     return Row(
       children: [
         Container(
@@ -257,7 +261,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             onPressed: () {
               //Todo: check to be logged in
               setState(() {
-                satisfaction=index;
+                satisfaction = index;
               });
             },
             icon: Icon(EvaIcons.starOutline),
@@ -270,91 +274,81 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
       ],
     );
   }
+
   Container peopleCommentsBuilder() {
     return Container(
-            width: double.infinity,
-            height: 200,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: ListView.builder(
-
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: fakeData['Comments'].length,
-                itemBuilder: (context, index) {
-                  var score='';
-                  if(fakeData['Comments'][index].lastIndexOf(":")!=fakeData['Comments'][index].indexOf(":")) {
-                    score = fakeData['Comments'][index].split(":")[2]+'⭐\n';
-                  }
-                    return Row(
-                      children: [
-                        Container(
-
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            shape: BoxShape.rectangle,
-                            boxShadow: [
-                              BoxShadow(
-                                blurStyle: BlurStyle.outer,
-                                color: Colors.grey,
-                                blurRadius: 5,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width / 2,
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height / 5,
-                          child: ListTile(
-                            isThreeLine: true,
-                            contentPadding: EdgeInsets.all(10),
-                            title: Text(
-                              fakeData['Comments'][index].split(":")[0],
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-
-
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(score,
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Text(
-                                  fakeData['Comments'][index].split(":")[1],
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-
-                                ),
-                              ],
-                            ),
-                          ),
+      width: double.infinity,
+      height: 200,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: fakeData['Comments'].length,
+            itemBuilder: (context, index) {
+              var score = '';
+              if (fakeData['Comments'][index].lastIndexOf(":") !=
+                  fakeData['Comments'][index].indexOf(":")) {
+                score = fakeData['Comments'][index].split(":")[2] + '⭐\n';
+              }
+              return Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      shape: BoxShape.rectangle,
+                      boxShadow: [
+                        BoxShadow(
+                          blurStyle: BlurStyle.outer,
+                          color: Colors.grey,
+                          blurRadius: 5,
+                          offset: Offset(0, 2),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-
                       ],
-                    );
-                  }
-    ),
-            ),
-          );
+                    ),
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.height / 5,
+                    child: ListTile(
+                      isThreeLine: true,
+                      contentPadding: EdgeInsets.all(10),
+                      title: Text(
+                        fakeData['Comments'][index].split(":")[0],
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            score,
+                            style: TextStyle(
+                              fontSize: 10,
+                            ),
+                          ),
+                          Text(
+                            fakeData['Comments'][index].split(":")[1],
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    width: 40,
+                  ),
+                ],
+              );
+            }),
+      ),
+    );
   }
 
   BottomAppBar hereNavigationButtomBiulder() {

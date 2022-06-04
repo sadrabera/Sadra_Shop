@@ -4,7 +4,10 @@ import 'boxes.dart';
 
 class BooksStationary extends StatelessWidget {
   Map allBooksStationary;
-  BooksStationary({Key? key ,required this.allBooksStationary }) : super(key: key);
+
+  BooksStationary({Key? key, required this.allBooksStationary})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -45,12 +48,9 @@ class BooksStationary extends StatelessWidget {
             number: 100,
             data: allBooksStationary["Handicrafts"],
           ),
-
-
         ],
-
       ),
-      padding: EdgeInsets.only(left: 10, top: 10,bottom: 20),
+      padding: EdgeInsets.only(left: 10, top: 10, bottom: 20),
     );
   }
 }

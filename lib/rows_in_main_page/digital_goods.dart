@@ -5,7 +5,9 @@ import 'boxes.dart';
 
 class DigitalGoodsRow extends StatelessWidget {
   Map allDigitalGoods;
-  DigitalGoodsRow( {Key? key ,required this.allDigitalGoods }) : super(key: key);
+
+  DigitalGoodsRow({Key? key, required this.allDigitalGoods}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -45,11 +47,9 @@ class DigitalGoodsRow extends StatelessWidget {
             number: 100,
             data: allDigitalGoods['Camera'],
           ),
-
         ],
-
       ),
-      padding: EdgeInsets.only(left: 10, top: 10,bottom: 20),
+      padding: EdgeInsets.only(left: 10, top: 10, bottom: 20),
     );
   }
 }

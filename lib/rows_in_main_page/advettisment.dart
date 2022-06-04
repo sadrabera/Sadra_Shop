@@ -9,25 +9,22 @@ class Advertisement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      Center(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 5),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,//-40
-            height: MediaQuery.of(context).size.height / 3,
-            child: Image.asset(imageAddress,
-                fit: BoxFit.fill),
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 10,
-                offset: Offset(0, 5),
-              ),
-            ],
-          ),
+      Container(
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        child: SizedBox(
+          width: 400, //-40
+          height: 280, //-40
+          child: Image.asset(imageAddress, fit: BoxFit.fill),
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 10,
+              offset: Offset(0, 5),
+            ),
+          ],
         ),
       ),
       const SizedBox(

@@ -9,11 +9,13 @@ class MainBoxes extends StatelessWidget {
   List data;
 
   MainBoxes(
-      {Key? key, required this.title,
+      {Key? key,
+      required this.title,
       required this.image,
       required this.number,
       this.fontSize,
-      required this.data}) : super(key: key);
+      required this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

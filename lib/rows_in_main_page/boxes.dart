@@ -2,20 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/buy_page.dart';
 
+import '../main.dart';
+
 class MainBoxes extends StatelessWidget {
   String title, image;
   int number;
   double? fontSize;
-  List data;
 
-  MainBoxes(
-      {Key? key,
-      required this.title,
-      required this.image,
-      required this.number,
-      this.fontSize,
-      required this.data})
-      : super(key: key);
+  MainBoxes({
+    Key? key,
+    required this.title,
+    required this.image,
+    required this.number,
+    this.fontSize,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,9 @@ class MainBoxes extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return BuyPage(title: title, data: data);
+              return BuyPage(
+                title: title,
+              );
             },
           ),
         );

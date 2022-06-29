@@ -2,11 +2,23 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:untitled/buy_page.dart';
 import 'package:untitled/purchase_page.dart';
+
+import 'good.dart';
 
 class EveryGoodBuyPage extends StatefulWidget {
   Goods data;
+  Map colorConvertor={
+    "Red":"0xFFC62828",
+    "Orange":"0xFFFF9800",
+    "Blue":"0xFF2196F3",
+    "Green":"0xFF69F0AE",
+    "Yellow":"0xFFFFFF00",
+    "Pink":"0xFFE91E63",
+    "Purple":"0xFF9C27B0",
+    "Black":"0xFF000000",
+    "White":"0xFFFFFFFF"
+};
 
   EveryGoodBuyPage({Key? key, required this.data}) : super(key: key);
 
@@ -15,35 +27,7 @@ class EveryGoodBuyPage extends StatefulWidget {
 }
 
 class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
-  Map fakeData = {
-    "Color": [
-      "Red:0xFFC62828",
-      "Blue:0xFFE3F2FD",
-      "Green:0xFFE8F5E9",
-      "Yellow:0xFFFBE9E7",
-      "Pink:0xFFFCE4EC",
-      "Purple:0xFFEBF4FF",
-      "Black:0xFF000000",
-      "White:0xFFFFFFFF",
-    ],
-    "Size": [
-      "XS",
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL",
-    ],
-    "Comments": [
-      "Sadra:Nice:4.5",
-      "Ali:Good:4.0",
-      "FXG12:Bad:3.5",
-      "catty:12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455:2",
-      "SOaaV:Very Good",
-      "MO:Very Nice:5.0",
-    ]
-  }; //TODO: get data from server
-  //TODO temp,i should change constructor to socket
+
   @override
   void initState() {
     super.initState();
@@ -93,10 +77,10 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     for (int i = 0;
-                        i < 3 /*TODO widget.data.images.length*/;
+                        i < widget.data.image.length ;
                         i++)
                       Image.network(
-                        widget.data.image,
+                        widget.data.image[i],
                         width: MediaQuery.of(context).size.width,
                       ),
                   ],
@@ -148,7 +132,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             SizedBox(
               height: 20,
             ),
-            Text("Color:${fakeData['Color'][selectedColor].split(":")[0]}",
+            Text("Color:${widget.data.colors[selectedColor]}",
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: 17,
@@ -157,7 +141,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             buildColorMaker(),
 
             Text(
-              "Size:${fakeData['Size'][selectedSize]}",
+              "Size:${widget.data.sizes[selectedSize]}",
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 17,
@@ -285,12 +269,11 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             padding: EdgeInsets.symmetric(horizontal: 10),
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            itemCount: fakeData['Comments'].length,
+            itemCount: widget.data.comments?.keys.length,
             itemBuilder: (context, index) {
               var score = '';
-              if (fakeData['Comments'][index].lastIndexOf(":") !=
-                  fakeData['Comments'][index].indexOf(":")) {
-                score = fakeData['Comments'][index].split(":")[2] + '⭐\n';
+              if (widget.data.comments?[widget.data.comments?.keys.elementAt(index)]['score'] !=0) {
+                score = widget.data.comments?[widget.data.comments?.keys.elementAt(index)]['score'] + '⭐\n';
               }
               return Row(
                 children: [
@@ -313,7 +296,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
                       isThreeLine: true,
                       contentPadding: EdgeInsets.all(10),
                       title: Text(
-                        fakeData['Comments'][index].split(":")[0],
+                        widget.data.comments!.keys.elementAt(index),
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -329,7 +312,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
                             ),
                           ),
                           Text(
-                            fakeData['Comments'][index].split(":")[1],
+                            widget.data.comments?[widget.data.comments?.keys.elementAt(index)]['view'],
                             style: TextStyle(
                               fontSize: 15,
                             ),
@@ -400,7 +383,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
       child: ListView.builder(
           padding: EdgeInsets.all(4),
           scrollDirection: Axis.horizontal,
-          itemCount: fakeData["Color"].length,
+          itemCount:widget.data.colors.length,
           itemBuilder: (context, index) {
             return Row(
               children: [
@@ -568,7 +551,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
                       ),
                     ],
                   ),
-                  child: Text(fakeData["Size"][index],
+                  child: Text(widget.data.sizes[index],
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'Roboto',
@@ -582,7 +565,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             ],
           );
         },
-        itemCount: fakeData['Size'].length,
+        itemCount: widget.data.sizes.length,
       ),
     );
   }

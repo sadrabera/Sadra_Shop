@@ -8,478 +8,16 @@ import 'package:untitled/main_page.dart';
 import 'package:untitled/profile_page.dart';
 import 'package:untitled/purchase_page.dart';
 
-Map<String, dynamic> allData = {
-  "Digital": {
-    "Laptop": [
-      {
-        "title": "Lenovo",
-        "price": "200.00",
-        "description":
-            "Lenovo Laptop is a brand of notebook computers manufactured by Lenovo. It is a line of notebook computers designed for personal computers, but also used as a general-purpose computer for business and education. The laptop is a portable personal computer with a thin LCD or LED-backlit display, a keyboard, and a pointing device. The laptop is typically powered by a battery, although some laptops also have a built-in rechargeable lithium-ion battery. The laptop is typically sold in a notebook computer case, although some Lenovo models are sold without a case. Lenovo notebooks are available in a variety of colors and models, and are typically sold in a variety of sizes and configurations. The laptop is typically sold in a notebook computer case, although some Lenovo models are sold without a case. Lenovo notebooks are available in a variety of colors and models, and are typically sold in a variety of sizes and configurations. The laptop is typically sold in a notebook computer case, although some Lenovo models are sold without a case.",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Lenovo",
-        "price": "200.00",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Lenovo",
-        "price": "200.00",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Lenovo",
-        "price": "200.00",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Lenovo",
-        "price": "200.00",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Mobile": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "TV": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Camera": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-  },
-  "Clothes": {
-    "Men Fashion": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Women Fashion": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Women Shoes": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Men Shoes": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Kid Fashion": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-  },
-  "BookStationary": {
-    "Book": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Stationary": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Music": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Handicrafts": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-  },
-  "SportTrip": {
-    "Sport Clothes": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Sport Goods": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-    "Camping Equipment": [
-      {
-        "title": "Lenovo",
-        "price": "200",
-        "description": "Lenovo is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      },
-      {
-        "title": "Dell",
-        "price": "300",
-        "description": "Dell is a brand ",
-        "rate": "4.5",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-      },
-      {
-        "title": "HP",
-        "price": "400",
-        "description": "HP is a brand ",
-        "image":
-            "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MzI1MTkwfGltYWdlL3BuZ3xoZTQvaGU3LzExMDMzODkwMzU3Mjc4LnBuZ3wwZWQzZWU4OTAxNDI0NGM2ODVhMTc4MGU0MzA0ZDQyZWFkYjBmNjY5OGUwMjM4ZjU5OWVmZTE2NTEzYzU1YTQ3/lenovo-laptop-workstation-thinkpad-p15-15-subseries-hero.png",
-        "rate": "4.5",
-      }
-    ],
-  }
-};
 const port = 8080;
-const host = '10.0.2.2';
+const host = '192.168.1.111';
 
 void main() {
   MyApp.startConnection();
 
-  runApp(MyApp(
-    allData: allData,
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  Map allData;
   static Socket? socket;
   static Stream<Uint8List>? stream;
 
@@ -488,7 +26,7 @@ class MyApp extends StatefulWidget {
     MyApp.stream = MyApp.socket!.asBroadcastStream();
   }
 
-  MyApp({Key? key, required this.allData}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -523,10 +61,7 @@ class _MyAppState extends State<MyApp> {
             }),
           ],
         ),
-        body: MyMainPage(
-          allData: widget
-              .allData, //this is temp,I will get data from server for each page
-        ),
+        body: MyMainPage(),
         bottomNavigationBar: BottomNavigatorForCartAndProfileAndHome(0),
       ),
     );
@@ -662,14 +197,14 @@ class _MyAppState extends State<MyApp> {
                             if (MyApp.socket == null) {
                               MyApp.startConnection();
                             }
-                            while(true){
-                              try{
-                                 MyApp.socket!.write(
+                            while (true) {
+                              try {
+                                MyApp.socket!.write(
                                   "login:$phoneNumber:$password\u0000",
                                 );
-                                 await MyApp.socket?.flush();
+                                await MyApp.socket?.flush();
                                 break;
-                              }catch(e){
+                              } catch (e) {
                                 await MyApp.startConnection();
                               }
                             }
@@ -687,11 +222,12 @@ class _MyAppState extends State<MyApp> {
                                     builder: (context) => ProfilePage(),
                                   ),
                                 );
-                              } else {
+                              } else if (responseString == "login failed") {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                      content: Text(
-                                          'Wrong phone number or password')),
+                                    content:
+                                        Text('Wrong phone number or password'),
+                                  ),
                                 );
                               }
                             });
@@ -850,14 +386,14 @@ class _MyAppState extends State<MyApp> {
                             String password = _registerPasswordController.text;
                             String email = _emailController.text;
                             String place = _placeController.text;
-                            while(true){
-                              try{
+                            while (true) {
+                              try {
                                 MyApp.socket!.write(
                                   'register:$name:$phoneNumber:$password:$email:$place\u0000',
                                 );
                                 await MyApp.socket?.flush();
                                 break;
-                              }catch(e){
+                              } catch (e) {
                                 await MyApp.startConnection();
                               }
                             }
@@ -925,8 +461,8 @@ class BottomNavigatorForCartAndProfileAndHome extends StatelessWidget {
           ),
         ],
         onTap: (index) {
-          bool isNotLogedIn=true;
-          if(state==0) {
+          bool isNotLogedIn = true;
+          if (state == 0) {
             if (MyApp.socket == null) {
               MyApp.startConnection();
             }
@@ -934,40 +470,34 @@ class BottomNavigatorForCartAndProfileAndHome extends StatelessWidget {
             MyApp.socket?.flush();
             MyApp.stream?.listen((data) {
               if (String.fromCharCodes(data) == "no") {
-               isNotLogedIn=true;
+                isNotLogedIn = true;
               } else {
-                isNotLogedIn=false;
+                isNotLogedIn = false;
               }
             });
           }
           if (index == 0) {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => MyApp(
-                  allData:
-                      allData, //this is temp,I will get data from server for each page
-                ),
+                builder: (context) => MyApp(),
               ),
             );
           } else if (index == 1) {
-            if(isNotLogedIn) {
+            if (isNotLogedIn) {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MyApp(allData: allData)));
+                  context, MaterialPageRoute(builder: (context) => MyApp()));
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('Login to first to see the Cart'),
                 ),
               );
-            }else{
+            } else {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => PurchasePage(),
                 ),
               );
             }
-
           } else if (index == 2) {
             if (MyApp.socket == null) {
               MyApp.startConnection();
@@ -977,9 +507,7 @@ class BottomNavigatorForCartAndProfileAndHome extends StatelessWidget {
             MyApp.stream?.listen((data) {
               if (String.fromCharCodes(data) == "no") {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MyApp(allData: allData)));
+                    context, MaterialPageRoute(builder: (context) => MyApp()));
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Login to first to see the profile'),

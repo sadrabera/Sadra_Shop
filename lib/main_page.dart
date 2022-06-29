@@ -6,9 +6,7 @@ import 'package:untitled/rows_in_main_page/digital_goods.dart';
 import 'package:untitled/rows_in_main_page/sport_trip.dart';
 
 class MyMainPage extends StatelessWidget {
-  Map allData;
-
-  MyMainPage({Key? key, required this.allData}) : super(key: key);
+  MyMainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,23 +15,15 @@ class MyMainPage extends StatelessWidget {
         child: Column(
           children: [
             hereText('Digitals'),
-            DigitalGoodsRow(
-              allDigitalGoods: allData["Digital"],
-            ),
+            DigitalGoodsRow(),
             Advertisement(imageAddress: 'assets/images/adv.jpg'),
-            hereText('Fashions'),
-            ClothesGoods(
-              allClothesGoods: allData["Clothes"],
-            ),
-            Advertisement(imageAddress: 'assets/images/adv2.png'),
-            hereText('Books and stationary'),
-            BooksStationary(
-              allBooksStationary: allData["BookStationary"],
-            ),
-            hereText('Sports And Trip'),
-            SportTrip(
-              allSportTrip: allData["SportTrip"],
-            ),
+            // hereText('Fashions'),
+            // ClothesGoods(),
+            // Advertisement(imageAddress: 'assets/images/adv2.png'),
+            // hereText('Books and stationary'),
+            // BooksStationary(),
+            // hereText('Sports And Trip'),
+            // SportTrip(),
           ],
           crossAxisAlignment: CrossAxisAlignment.start,
         ),

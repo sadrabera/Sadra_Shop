@@ -19,8 +19,12 @@ class _ProfilePageState extends State<ProfilePage> {
     if (MyApp.socket == null) {
       MyApp.startConnection();
     }
-    MyApp.socket?.write('profile\u0000');
-    MyApp.socket?.flush();
+    try {
+      MyApp.socket?.write('profile\u0000');
+      MyApp.socket?.flush();
+    } catch (e) {
+      print(e);
+    }
     MyApp.stream?.listen((event) {
       print(String.fromCharCodes(event));
       widget.allData = jsonDecode(String.fromCharCodes(event));

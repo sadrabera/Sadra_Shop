@@ -7,13 +7,13 @@ import 'package:untitled/purchase_page.dart';
 import 'package:untitled/sell_page.dart';
 
 class ProfilePage extends StatefulWidget {
+  Map<String, dynamic> allData = {};
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Map<String, dynamic> allData = {};
-
   @override
   Widget build(BuildContext context) {
     if (MyApp.socket == null) {
@@ -21,11 +21,10 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     MyApp.socket?.write('profile\u0000');
     MyApp.socket?.flush();
-    MyApp.stream!.listen((event) {
+    MyApp.stream?.listen((event) {
       print(String.fromCharCodes(event));
-      allData = jsonDecode(String.fromCharCodes(event));
+      widget.allData = jsonDecode(String.fromCharCodes(event));
     });
-
 
     return Scaffold(
       appBar: AppBar(
@@ -52,193 +51,205 @@ class _ProfilePageState extends State<ProfilePage> {
             horizontal: 15,
           ),
           child: FutureBuilder(
-            future: Future.delayed(
-              Duration(milliseconds: 1000),
-              () => allData,
-            ),
-            builder: (context, snapshot) {
-              try {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 30),
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://i.pinimg.com/originals/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg'),
-                            radius: 50,
-                          ),
-                          SizedBox(height: 30),
-
-                          Builder(
-                              builder: (context) {
-                                return Text(allData['username']);
-                              }
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(allData['phoneNumber'],
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.grey,
-                              )),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(allData['email'],
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.grey,
-                              )),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                      'Your Favorite Products:',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Search in favorite products',
-                        prefixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+              future: Future.delayed(Duration(seconds: 1), () {
+                return widget.allData;
+              }),
+              builder: (context, snapshot) {
+                try {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 30),
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  'https://i.pinimg.com/originals/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg'),
+                              radius: 50,
+                            ),
+                            SizedBox(height: 30),
+                            Builder(builder: (context) {
+                              return Text(widget.allData['username']);
+                            }),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(widget.allData['phoneNumber'],
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.grey,
+                                )),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(widget.allData['email'],
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.grey,
+                                )),
+                          ],
                         ),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    favoriteBuilder(
-                        allData['likedGoods']['goods'].values.toList()),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'Completed Orders :',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Search in completed orders',
-                        prefixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                      SizedBox(height: 30),
+                      Text(
+                        'Your Favorite Products:',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    favoriteBuilder(
-                        allData['completedOrders']['goods'].values.toList()),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'Your Products :',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                      SizedBox(height: 15),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Search in favorite products',
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: 250,
-                      child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount:
-                          allData['ownedGoods']['goods'].values
-                              .toList()
-                              .length,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              child: ListTile(
-                                leading: Image.network(
-                                    allData['ownedGoods']['goods']
-                                        .values
-                                        .toList()[index]['image']),
-                                title: Text(allData['ownedGoods']['goods']
-                                    .values
-                                    .toList()[index]['name']),
-                                subtitle: Text(allData['ownedGoods']['goods']
-                                    .values
-                                    .toList()[index]['price']),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    IconButton(
-                                      color: Colors.brown,
-                                      icon: Icon(Icons.edit),
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                SellPage(
-                                                  edit: true,
-                                                ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    IconButton(
-                                      color: Colors.red,
-                                      icon: Icon(Icons.delete),
-                                      onPressed: () {
-                                        setState(() {
-                                          var temp = allData['ownedGoods']['goods']
-                                              .values
-                                              .toList()
-                                              .get(index);
-                                          allData['ownedGoods']['goods'].remove(
-                                              temp);
-                                        });
-                                      },
-                                    ),
-                                  ],
+                      SizedBox(height: 15),
+                      favoriteBuilder(
+                          widget.allData['likedGoods']['goods'].keys.toList(),
+                          "likedGoods"),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        'Completed Orders :',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Search in completed orders',
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      favoriteBuilder(
+                          widget.allData['completedOrders']['goods'].keys
+                              .toList(),
+                          "completedOrders"),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        'Your Products :',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        height: 250,
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: widget
+                                .allData['ownedGoods']['goods'].values
+                                .toList()
+                                .length,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                child: ListTile(
+                                  leading: Image.network(widget
+                                      .allData['ownedGoods']['goods'].values
+                                      .toList()[index]['image'][0]),
+                                  title: Text(widget
+                                      .allData['ownedGoods']['goods'].values
+                                      .toList()[index]['title']),
+                                  subtitle: Text(widget
+                                      .allData['ownedGoods']['goods'].values
+                                      .toList()[index]['price']),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        color: Colors.brown,
+                                        icon: Icon(Icons.edit),
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) => SellPage(
+                                                edit: true,
+                                                title: widget
+                                                    .allData['ownedGoods'][
+                                                        'goods'].values
+                                                    .toList()[index]['title'],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      IconButton(
+                                        color: Colors.red,
+                                        icon: Icon(Icons.delete),
+                                        onPressed: () {
+                                          MyApp.socket
+                                              ?.write('removeItem:${widget
+                                              .allData['ownedGoods']['goods'].values
+                                              .toList()[index]['title']}\u0000');
+                                          MyApp.socket?.flush();
+                                          print(widget.allData['ownedGoods']['goods'].keys.toList()[index]);
+                                          setState(() {
+                                            var temp = widget
+                                                .allData['ownedGoods']['goods']
+                                                .keys
+                                                .toList()[index];
+                                            widget.allData['ownedGoods']
+                                                    ['goods']
+                                                .remove(temp);
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          }),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => SellPage(),
-                          ),
-                        );
-                      },
-                      child: Text('Add to Your Products'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.deepOrange,
+                              );
+                            }),
                       ),
-                    ),
-                  ],
-                );
-              } catch (e) {
-                return Column(
-                  children: [
-                    SizedBox(height: 30),
-                    Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ],
-                );
-              }
-            }
-          ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => SellPage(),
+                            ),
+                          );
+                        },
+                        child: Text('Add to Your Products'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.deepOrange,
+                        ),
+                      ),
+                    ],
+                  );
+                } catch (e, s) {
+                  print(e);
+                  print(s);
+                  return Column(
+                    children: [
+                      SizedBox(height: 30),
+                      Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
+                  );
+                }
+              }),
         ),
       ),
       bottomNavigationBar: BottomNavigatorForCartAndProfileAndHome(2),
@@ -396,23 +407,27 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ));
   }
-}
 
-Container favoriteBuilder(List fakeData, {bool isYourProduct = false}) {
-  return Container(
-    height: 250,
-    child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: fakeData.length,
-        itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              leading: Image.network(fakeData[index]['image']),
-              title: Text(fakeData[index]['name']),
-              subtitle: Text(fakeData[index]['price']),
-              trailing: Text(fakeData[index]['Color']),
-            ),
-          );
-        }),
-  );
+  Container favoriteBuilder(List fakeData, String type) {
+    return Container(
+      height: 250,
+      child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: fakeData.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                leading: Image.network(
+                    widget.allData[type]['goods'][fakeData[index]]['image'][0]),
+                title: Text(
+                    (widget.allData[type]['goods'][fakeData[index]]['title'])),
+                subtitle: Text(
+                    (widget.allData[type]['goods'][fakeData[index]]['price'])),
+                trailing: Text((widget.allData[type]['goods'][fakeData[index]]
+                    ['Colors'][0])),
+              ),
+            );
+          }),
+    );
+  }
 }

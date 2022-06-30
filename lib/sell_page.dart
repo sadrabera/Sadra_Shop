@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/main.dart';
 import 'package:untitled/purchase_page.dart';
 
 class SellPage extends StatefulWidget {
   bool? edit;
+  String? title;
 
-  SellPage({Key? key, this.edit}) : super(key: key);
+  SellPage({Key? key, this.edit,this.title}) : super(key: key);
 
   @override
   State<SellPage> createState() => _SellPageState();
@@ -13,9 +15,31 @@ class SellPage extends StatefulWidget {
 
 class _SellPageState extends State<SellPage> {
   String _dropDownValue = 'Type';
+  late TextEditingController _nameController;
+  late TextEditingController _descriptionController;
+  late TextEditingController _priceController;
+  late TextEditingController _colorController;
+  late TextEditingController _sizeController;
+  late TextEditingController _imageController;
+  late TextEditingController _quantityController;
+  late TextEditingController _storeController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController();
+    _descriptionController = TextEditingController();
+    _priceController = TextEditingController();
+    _colorController = TextEditingController();
+    _sizeController = TextEditingController();
+    _imageController = TextEditingController();
+    _quantityController = TextEditingController();
+    _storeController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final _fromKey = GlobalKey<FormState>();
     var titleText = Text(
       'Add New Item',
     );
@@ -51,104 +75,223 @@ class _SellPageState extends State<SellPage> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               info,
               typePicker(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Name',
-                    labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 20,
-                    ),
-                  ),
-                  onSubmitted: (value) {
-                    print(value);
-                  }, //Todo use this to get the name of the item
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Store\'s Name',
-                    labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 20,
-                    ),
-                  ),
-                  onSubmitted: (value) {
-                    print(value);
-                  }, //Todo use this to get the name of the item
-                ),
-              ),
+              Form(
+                  key: _fromKey,
+                  child: Column(
+                    children: [
+                      Builder(
+                        builder: (context) {
+                          if(widget.edit??false){
+                            return SizedBox(
+                              height: 0,
+                            );
+                          }
+                          return Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                            child: TextFormField(
+                              controller: _nameController,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                labelStyle: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null || value == "") {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
+                            ),
+                          );
+                        }
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: TextFormField(
+                          controller: _storeController,
+                          decoration: InputDecoration(
+                            labelText: 'Store\'s Name',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                            ),
+                          ),
+                          validator: (value) {
+
+                            if (value == null || value == "") {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: TextFormField(
+                          controller: _imageController,
+                          decoration: InputDecoration(
+                            helperText:
+                                'Example: www.google.com www.amazon.com',
+                            labelText: 'link to images, split with space',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                            ),
+                          ),
+                          validator: (value) {
+
+                            if (value == null || value == "") {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: TextFormField(
+                          controller: _priceController,
+                          decoration: InputDecoration(
+                            labelText: 'Price',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                            ),
+                          ),
+                          validator: (value) {
+
+                            if (value == null || value == "") {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: TextFormField(
+                          controller: _sizeController,
+                          decoration: InputDecoration(
+                            helperText: 'Example: M S XL',
+                            labelText: 'Sizes, split with space',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                            ),
+                          ),
+                          validator: (value) {
+
+                            if (value == null || value == "") {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: TextFormField(
+                          controller: _colorController,
+                          decoration: InputDecoration(
+                            helperText: 'Example: red blue green',
+                            labelText: 'Colors, split with space',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                            ),
+                          ),
+                          validator: (value) {
+
+                            if (value == null || value == "") {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: TextFormField(
+                          controller: _quantityController,
+                          decoration: InputDecoration(
+                            helperText: 'Example: 100',
+                            labelText: 'Quantity',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                            ),
+                          ),
+                          validator: (value) {
+
+                            if (value == null || value == "") {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: TextFormField(
+                          controller: _descriptionController,
+                          decoration: InputDecoration(
+                            labelText: 'Description',
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                            ),
+                          ),
+                          validator: (value) {
+
+                            if (value == null || value == "") {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  )),
               SizedBox(
                 height: 20,
               ),
               Center(
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
-                    ),
-                    onPressed: () {},
-                    child: Text('Add Image')),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Price',
-                    labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 20,
-                    ),
-                  ), //TODo use validator to check if the price is a number
-                  onSubmitted: (value) {
-                    print(value);
-                  }, //Todo use this to get the name of the item
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text('Color And Size And Number:',
-                  style: TextStyle(fontSize: 20, color: Colors.black)),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    helperText: 'Example red:XL:10 blue:L:5',
-                    labelText: 'Color and size and number',
-                    labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 20,
-                    ),
-                  ), //TODo use validator to check if the price is a number
-                  onSubmitted: (value) {
-                    print(value);
-                  }, //Todo use this to get the name of the item
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Description',
-                    labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 20,
-                    ),
-                  ), //TODo use validator to check if the price is a number
-                  onSubmitted: (value) {
-                    print(value);
-                  }, //Todo use this to get the name of the item
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    String name = _nameController.text;
+                    if(widget.edit==true){name=widget.title!;}
+                    String store = _storeController.text;
+                    String image = _imageController.text;
+                    String price = _priceController.text;
+                    String size = _sizeController.text;
+                    String color = _colorController.text;
+                    String quantity = _quantityController.text;
+                    String description = _descriptionController.text;
+                    String storeName = _storeController.text;
+
+                    if (_fromKey.currentState!.validate()) {
+
+                      MyApp.socket?.write(
+                          'addItem::::$_dropDownValue::::$name::::$image::::$price::::$size::::$color::::$quantity::::$storeName::::$description\u0000');
+                    }
+                    MyApp.socket?.flush();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Item added'),
+                        duration: Duration(seconds: 1),
+                      ),
+                    );
+                  },
                   child: Text('Submit'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(60, 70),
@@ -204,10 +347,22 @@ class _SellPageState extends State<SellPage> {
             fontWeight: FontWeight.bold,
           ),
           items: [
-            'Digitals',
-            'Fashions',
-            'Books and stationary',
-            'Sport and trip'
+            'Laptop',
+            'Mobile',
+            'TV',
+            'Camera',
+            'Men Fashion',
+            'Women Fashion',
+            'Women Shoes',
+            'Men Shoes',
+            "Kid Fashion",
+            "Book",
+            "Stationary",
+            "Music",
+            "Handicrafts",
+            "Sport Clothes",
+            "Sport Goods",
+            "Camping Equipment",
           ].map(
             (val) {
               return DropdownMenuItem<String>(

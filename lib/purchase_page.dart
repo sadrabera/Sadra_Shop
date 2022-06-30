@@ -1,41 +1,33 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/profile_page.dart';
 
 import 'main.dart';
 
 class PurchasePage extends StatefulWidget {
+  num sum = 0;
+
   @override
   State<PurchasePage> createState() => _PurchasePageState();
 }
 
 class _PurchasePageState extends State<PurchasePage> {
-  List fakeAddresses = [
-    "Ms Alice Smith Apartment 1c 213 Derrick Street Boston, MA 02130 USA",
-    'Mr Bob Smith Apartment 2f 112 Manhattan Street New York, NY 10001 USA',
-  ];
-  Map fakeData = {
-    "Lenovo Laptop": {
-      "image": "assets/images/laptop.jpg",
-      "price": 2000,
-      "quantity": 1,
-    },
-    "Samsung Mobile": {
-      "image": "assets/images/mobile.jpg",
-      "price": 1500,
-      "quantity": 1,
-    },
-    "Samsung TV": {
-      "image": "assets/images/tv.jpg",
-      "price": 2500,
-      "quantity": 1,
-    },
-    "Sony Camera": {
-      "image": "assets/images/camera.jpg",
-      "price": 1000,
-      "quantity": 1,
-    },
-  };
+  List? userAddresses;
+
+  Map? dataInCart;
+
   int selectedAddress = 0;
+  late TextEditingController _controller ;
+
+  @override
+  void initState() {
+
+    super.initState();
+    _controller = TextEditingController();
+    disconnecting();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,166 +39,243 @@ class _PurchasePageState extends State<PurchasePage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListView.custom(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(vertical: 10),
-                semanticChildCount: fakeData.keys.toList().length,
-                childrenDelegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return Container(
-                      height: 100,
-                      child: Card(
-                        color: Colors.white,
-                        shadowColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                                width: 100,
+          child: FutureBuilder(
+              future: disconnecting(),
+              builder: (context, snapshot) {
+                if (dataInCart != null) {
+                  try {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListView.custom(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          semanticChildCount: dataInCart?.keys.toList().length,
+                          childrenDelegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                              return Container(
                                 height: 100,
-                                child: Image.asset(
-                                    fakeData[fakeData.keys.toList()[index]]
-                                        ['image'])),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(fakeData.keys.toList()[index].toString(),
-                                    style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                    )),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "\$" +
-                                      fakeData[fakeData.keys.toList()[index]]
-                                              ['price']
-                                          .toString(),
-                                  style: TextStyle(
-                                    color: Colors.grey,
+                                child: Card(
+                                  color: Colors.white,
+                                  shadowColor: Colors.black,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Container(
+                                          width: 100,
+                                          height: 100,
+                                          child: Image.network(dataInCart![
+                                                  dataInCart?.keys
+                                                      .elementAt(index)]
+                                              ['image'][0])),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                              dataInCart!.keys
+                                                  .toList()[index]
+                                                  .toString(),
+                                              style: TextStyle(
+                                                fontStyle: FontStyle.italic,
+                                              )),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "\$" +
+                                                dataInCart![dataInCart?.keys
+                                                            .toList()[index]]
+                                                        ['price']
+                                                    .toString(),
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.add),
+                                            color: Colors.green,
+                                            onPressed: () {
+                                              setState(() {
+                                                dataInCart![dataInCart?.keys
+                                                        .toList()[index]]
+                                                    ['quantity']++;
+                                                setState(()  {
+                                                  List? list = dataInCart?.keys.toList();
+                                                  widget.sum=0;
+                                                  for (int i = 0; i < list!.length; i++) {
+                                                    widget.sum = widget.sum + double.parse(dataInCart?[list[i]]["price"])*dataInCart?[list[i]]["quantity"];
+                                                  }
+                                                });
+                                              });
+                                            },
+                                          ),
+                                          Text(dataInCart![dataInCart?.keys
+                                                  .toList()[index]]['quantity']
+                                              .toString()),
+                                          Builder(builder: (context) {
+                                            var hereIcon = Icons.remove;
+                                            if (dataInCart![dataInCart?.keys
+                                                        .toList()[index]]
+                                                    ['quantity'] ==
+                                                1) hereIcon = Icons.delete;
+                                            return IconButton(
+                                              icon: Icon(hereIcon),
+                                              color: Colors.red,
+                                              onPressed: ()  {
+                                                dataInCart![dataInCart?.keys
+                                                    .toList()[index]]
+                                                ['quantity']--;
+                                                if (dataInCart![dataInCart
+                                                    ?.keys
+                                                    .toList()[index]]
+                                                ['quantity'] ==
+                                                    0) {
+                                                  print("${dataInCart?.keys
+                                                      .toList()[index]} removed");
+                                                  MyApp.socket?.write("remove from cart:${dataInCart?.keys.toList()[index]}\u0000");
+                                                  MyApp.socket?.flush();
+                                                  dataInCart!.remove(
+                                                      dataInCart?.keys
+                                                          .toList()[index]);
+                                                }
+                                                setState(()  {
+                                                  List? list = dataInCart?.keys.toList();
+                                                  widget.sum=0;
+                                                  for (int i = 0; i < list!.length; i++) {
+                                                    widget.sum = widget.sum + double.parse(dataInCart?[list[i]]["price"])*dataInCart?[list[i]]["quantity"];
+                                                  }
+                                                });
+
+                                              },
+                                            );
+                                          }),
+                                        ],
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                IconButton(
-                                  icon: Icon(Icons.add),
-                                  color: Colors.green,
-                                  onPressed: () {
-                                    setState(() {
-                                      fakeData[fakeData.keys.toList()[index]]
-                                          ['quantity']++;
-                                    });
-                                  },
-                                ),
-                                Text(fakeData[fakeData.keys.toList()[index]]
-                                        ['quantity']
-                                    .toString()),
-                                Builder(builder: (context) {
-                                  var hereIcon = Icons.remove;
-                                  if (fakeData[fakeData.keys.toList()[index]]
-                                          ['quantity'] ==
-                                      1) hereIcon = Icons.delete;
-                                  return IconButton(
-                                    icon: Icon(hereIcon),
-                                    color: Colors.red,
+                              );
+                            },
+                            childCount: dataInCart?.keys.toList().length,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        //Send locations.
+                        Text(
+                          'Send to:',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: userAddresses?.length,
+                            itemBuilder: (context, index) {
+                              var hereColor = Colors.grey;
+                              if (index == selectedAddress)
+                                hereColor = Colors.blue;
+                              return Card(
+                                child: ListTile(
+                                  title: Text(userAddresses?[index]),
+                                  trailing: IconButton(
+                                    icon: Icon(Icons.circle_outlined),
+                                    color: hereColor,
                                     onPressed: () {
                                       setState(() {
-                                        fakeData[fakeData.keys.toList()[index]]
-                                            ['quantity']--;
-                                        if (fakeData[fakeData.keys
-                                                .toList()[index]]['quantity'] ==
-                                            0)
-                                          fakeData.remove(
-                                              fakeData.keys.toList()[index]);
+                                        selectedAddress = index;
                                       });
                                     },
-                                  );
-                                }),
-                              ],
-                            ),
-                          ],
+                                  ),
+                                ),
+                              );
+                            }),
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
-                    );
-                  },
-                  childCount: fakeData.keys.toList().length,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              //Send locations.
-              Text(
-                'Send to:',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.grey,
-                ),
-              ),
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: fakeAddresses.length,
-                  itemBuilder: (context, index) {
-                    var hereColor = Colors.grey;
-                    if (index == selectedAddress) hereColor = Colors.blue;
-                    return Card(
-                      child: ListTile(
-                        title: Text(fakeAddresses[index]),
-                        trailing: IconButton(
-                          icon: Icon(Icons.circle_outlined),
-                          color: hereColor,
-                          onPressed: () {
+
+                        Text('Or add new address:',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey,
+                            )),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        TextFormField(
+                          controller: _controller,
+                          validator: (value) {
+                            if (value == null || value.isEmpty||value=="") {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+
+                          decoration: InputDecoration(
+                            label: Text('Enter your address'),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onFieldSubmitted: (value) {
                             setState(() {
-                              selectedAddress = index;
+                              if(value!=null&& value.isNotEmpty&&value!=""){
+                                userAddresses ??= [];
+                                userAddresses?.add(value);
+                                selectedAddress = (userAddresses!.length - 1);
+                                MyApp.socket?.write("add address:$value\u0000");
+                                MyApp.socket?.flush();
+                              }
                             });
                           },
                         ),
+                      ],
+                    );
+                  } catch (e) {
+                    print(e);
+                    return Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 20,
+                          ),
+                          CircularProgressIndicator(),
+                        ],
                       ),
                     );
-                  }),
-              SizedBox(
-                height: 20,
-              ),
-
-              Text('Or add new address:',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey,
-                  )),
-              SizedBox(
-                height: 15,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  label: Text('Enter your address'),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onSubmitted: (value) {
-                  setState(() {
-                    fakeAddresses.add(value);
-                  });
-                },
-              ),
-            ],
-          ),
+                  }
+                } else {
+                  return Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        CircularProgressIndicator(),
+                      ],
+                    ),
+                  );
+                }
+              }),
         ),
       ),
       bottomNavigationBar: NavigatorBottemBuilder(),
@@ -234,12 +303,6 @@ class _PurchasePageState extends State<PurchasePage> {
                   width: 100,
                   height: 100,
                   child: Builder(builder: (context) {
-                    num sum = 0;
-                    List list = fakeData.keys.toList();
-                    for (int i = 0; i < list.length; i++) {
-                      sum = sum + fakeData[list[i]]["price"];
-                    }
-
                     return Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -252,7 +315,7 @@ class _PurchasePageState extends State<PurchasePage> {
                             ),
                           ),
                           Text(
-                            '\$' + sum.toString(),
+                            '\$' + widget.sum.toString(),
                             style: TextStyle(
                               fontSize: 15,
                               color: Colors.black,
@@ -270,7 +333,48 @@ class _PurchasePageState extends State<PurchasePage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (userAddresses?.length == 0) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Please add an address'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      } else {
+                        showDialog( context: context, builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Confirm order'),
+                            content: Text('Are you sure you want to order?'),
+                            actions: [
+                              TextButton(
+                                child: Text('Cancel'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              TextButton(
+                                child: Text('Confirm'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text('You have ordered'),
+                                    duration: Duration(seconds: 2),
+                                  ));
+                                  MyApp.socket?.write("order\u0000");
+                                  MyApp.socket?.flush();
+                                  setState(() {
+
+                                  });
+
+
+                                },
+                              ),
+                            ],
+                          );
+                        });
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.orange,
                       shape: RoundedRectangleBorder(
@@ -288,5 +392,27 @@ class _PurchasePageState extends State<PurchasePage> {
         ],
       ),
     );
+  }
+
+  Future<bool> disconnecting() async {
+    MyApp.socket?.write('get cart\u0000');
+
+    await MyApp.socket?.flush();
+
+    MyApp.stream?.listen((event) {
+      Map allOfUserData = json.decode(String.fromCharCodes(event));
+      print(userAddresses);
+      userAddresses = allOfUserData["address"];
+      var temp = dataInCart;
+      dataInCart = allOfUserData["cartGoods"]["goods"];
+      for (int i = 0; i < dataInCart!.keys.length; i++) {
+        dataInCart?[dataInCart?.keys.toList().elementAt(i)]["quantity"] =
+            temp?[temp.keys.toList().elementAt(i)]["quantity"] ?? 1;
+      }
+
+    });
+
+
+    return true;
   }
 }

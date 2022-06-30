@@ -460,67 +460,28 @@ class BottomNavigatorForCartAndProfileAndHome extends StatelessWidget {
             label: 'Profile',
           ),
         ],
-        onTap: (index) {
-          bool isNotLogedIn = true;
-          if (state == 0) {
-            if (MyApp.socket == null) {
-              MyApp.startConnection();
-            }
-            MyApp.socket?.write("Am I logged in?\u0000");
-            MyApp.socket?.flush();
-            MyApp.stream?.listen((data) {
-              if (String.fromCharCodes(data) == "no") {
-                isNotLogedIn = true;
-              } else {
-                isNotLogedIn = false;
-              }
-            });
-          }
+        onTap: (index) async {
           if (index == 0) {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => MyApp(),
               ),
             );
-          } else if (index == 1) {
-            if (isNotLogedIn) {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyApp()));
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Login to first to see the Cart'),
-                ),
-              );
-            } else {
+          } else {
+
+            if (index == 1 ) {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => PurchasePage(),
                 ),
               );
+            } else if (index == 2) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(),
+                ),
+              );
             }
-          } else if (index == 2) {
-            if (MyApp.socket == null) {
-              MyApp.startConnection();
-            }
-            MyApp.socket?.write("Am I logged in?\u0000");
-            MyApp.socket?.flush();
-            MyApp.stream?.listen((data) {
-              if (String.fromCharCodes(data) == "no") {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyApp()));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Login to first to see the profile'),
-                  ),
-                );
-              } else {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ProfilePage(),
-                  ),
-                );
-              }
-            });
           }
         },
       );

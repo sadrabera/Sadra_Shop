@@ -9,7 +9,7 @@ import 'package:untitled/purchase_page.dart';
 import 'good.dart';
 
 class BuyPage extends StatelessWidget {
-  List<dynamic>? allDigitalGoods;
+  Map<String, dynamic> allDigitalGoods={};
 
   String title;
 
@@ -43,33 +43,36 @@ class BuyPage extends StatelessWidget {
                 builder: ((context, snapshot) {
                   while (true) {
                     try {
+                      String temp=allDigitalGoods.keys.elementAt(0);
                       List<Goods> hereGoods = [
                         Goods(
-                          title: allDigitalGoods?[0]['title'],
-                          image: allDigitalGoods?[0]['image'],
-                          description: allDigitalGoods?[0]['description'],
-                          price: allDigitalGoods?[0]['price'],
-                          rate: allDigitalGoods?[0]['rate'],
-                          owner: allDigitalGoods?[0]['owner'],
-                          colors: allDigitalGoods?[0]['colors'],
-                          sizes: allDigitalGoods?[0]['sizes'],
-                          comments: allDigitalGoods?[0]['comments'],
-
+                          title: allDigitalGoods[temp]['title'],
+                          image: allDigitalGoods[temp]['image'],
+                          description: allDigitalGoods[temp]['description'],
+                          price: allDigitalGoods[temp]['price'],
+                          rate: allDigitalGoods[temp]['rate'],
+                          owner: allDigitalGoods[temp]['owner'],
+                          colors: allDigitalGoods[temp]['Colors'],
+                          sizes: allDigitalGoods[temp]['Sizes'],
+                          comments: allDigitalGoods[temp]['comments'],
+                          ownerNickName: allDigitalGoods[temp]['ownerNickname'],
 
                         ),
                       ];
-                      for (int i = 1; i < allDigitalGoods!.length; i++) {
+                      for (int i = 1; i < allDigitalGoods.keys.length; i++) {
+                        String temp=allDigitalGoods.keys.elementAt(i);
                         hereGoods.add(
                           Goods(
-                            title: allDigitalGoods?[i]['title'],
-                            image: allDigitalGoods?[i]['image'],
-                            description: allDigitalGoods?[i]['description'],
-                            price: allDigitalGoods?[i]['price'],
-                            rate: allDigitalGoods?[i]['rate'],
-                            owner: allDigitalGoods?[i]['owner'],
-                            colors: allDigitalGoods?[i]['colors'],
-                            sizes: allDigitalGoods?[i]['sizes'],
-                            comments: allDigitalGoods?[i]['comments'],
+                            title: allDigitalGoods[temp]['title'],
+                            image: allDigitalGoods[temp]['image'],
+                            description: allDigitalGoods[temp]['description'],
+                            price: allDigitalGoods[temp]['price'],
+                            rate: allDigitalGoods[temp]['rate'],
+                            owner: allDigitalGoods[temp]['owner'],
+                            colors: allDigitalGoods[temp]['colors'],
+                            sizes: allDigitalGoods[temp]['sizes'],
+                            comments: allDigitalGoods[temp]['comments'],
+                            ownerNickName: allDigitalGoods[temp]['ownerNickName'],
                           ),
                         );
                       }
@@ -149,17 +152,7 @@ class BuyPage extends StatelessWidget {
                                       primary: Colors.orange,
                                     ),
                                   ),
-                                  TextButton(
-                                    child: const Text('ADD TO WishList',
-                                        style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          color: Colors.orange,
-                                        )),
-                                    onPressed: () {},
-                                    style: TextButton.styleFrom(
-                                      primary: Colors.orange,
-                                    ),
-                                  ),
+                                //ToDo add to whishlist deleted
                                 ],
                               ),
                             ]),
@@ -167,7 +160,9 @@ class BuyPage extends StatelessWidget {
                         },
                       );
                       break;
-                    } catch (e) {
+                    }  catch (e,s) {
+                      print(e);
+                      print(s);
                       return Column(
                         children: [
                           SizedBox(height: 30),
@@ -193,18 +188,19 @@ class BuyPage extends StatelessWidget {
     }
     while (true) {
       try {
-        MyApp.socket?.write('get:$title\u0000');
+        MyApp.socket?.write('get goods:$title\u0000');
 
-        await MyApp.socket?.flush();
+         MyApp.socket?.flush();
         break;
       } catch (e) {
         await MyApp.startConnection();
       }
     }
     MyApp.stream?.listen((event) {
+      print(String.fromCharCodes(event));
       allDigitalGoods = json.decode(String.fromCharCodes(event));
-      print(allDigitalGoods);
     });
+
   }
 }
 

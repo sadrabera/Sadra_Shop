@@ -18,10 +18,7 @@ class DigitalGoodsRow extends StatelessWidget {
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: FutureBuilder(
-          future: Future.delayed( Duration(milliseconds: 100)),
-          builder: (context, snapshot) {
-            return Row(
+            child: Row(
               children: <Widget>[
                 MainBoxes(
                   title: 'Laptop',
@@ -53,8 +50,8 @@ class DigitalGoodsRow extends StatelessWidget {
                   number: 100,
                 ),
               ],
-            );
-          }),
+            ),
+
       padding: EdgeInsets.only(left: 10, top: 10, bottom: 20),
     );
   }

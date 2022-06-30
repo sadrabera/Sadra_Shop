@@ -2,23 +2,25 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:untitled/main_page.dart';
 import 'package:untitled/purchase_page.dart';
 
 import 'good.dart';
+import 'main.dart';
 
 class EveryGoodBuyPage extends StatefulWidget {
   Goods data;
-  Map colorConvertor={
-    "Red":"0xFFC62828",
-    "Orange":"0xFFFF9800",
-    "Blue":"0xFF2196F3",
-    "Green":"0xFF69F0AE",
-    "Yellow":"0xFFFFFF00",
-    "Pink":"0xFFE91E63",
-    "Purple":"0xFF9C27B0",
-    "Black":"0xFF000000",
-    "White":"0xFFFFFFFF"
-};
+  Map colorConvertor = {
+    "Red": "0xFFC62828",
+    "Orange": "0xFFFF9800",
+    "Blue": "0xFF2196F3",
+    "Green": "0xFF69F0AE",
+    "Yellow": "0xFFFFFF00",
+    "Pink": "0xFFE91E63",
+    "Purple": "0xFF9C27B0",
+    "Black": "0xFF000000",
+    "White": "0xFFFFFFFF"
+  };
 
   EveryGoodBuyPage({Key? key, required this.data}) : super(key: key);
 
@@ -27,7 +29,6 @@ class EveryGoodBuyPage extends StatefulWidget {
 }
 
 class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
-
   @override
   void initState() {
     super.initState();
@@ -76,9 +77,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
                   },
                   scrollDirection: Axis.horizontal,
                   children: [
-                    for (int i = 0;
-                        i < widget.data.image.length ;
-                        i++)
+                    for (int i = 0; i < widget.data.image.length; i++)
                       Image.network(
                         widget.data.image[i],
                         width: MediaQuery.of(context).size.width,
@@ -98,7 +97,25 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
                     ],
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      MyApp.socket?.write("add to liked:${widget.data.title}\u0000");
+                      MyApp.socket?.flush();
+                      MyApp.stream?.listen((data) {
+                        if (String.fromCharCodes(data) == "added") {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Added to favorites'),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Sign in to add to favorites'),
+                            ),
+                          );
+                        }
+                      });
+                    },
                     icon: Icon(EvaIcons.heart),
                     color: Colors.red,
                   ),
@@ -153,6 +170,17 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
               height: 20,
             ),
             Text(
+              "Seller:${widget.data.ownerNickName}",
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontSize: 17,
+              ),
+            ),
+                SizedBox(
+                  height: 20,
+                ),
+
+            Text(
               "Description:",
               style: TextStyle(
                 fontSize: 20,
@@ -163,7 +191,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
               height: 10,
             ),
             Text(
-              widget.data.description + ".",
+              widget.data.description,
               style: TextStyle(
                 fontSize: 17,
               ),
@@ -201,13 +229,29 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             ),
 
             TextFormField(
-              maxLength: 55,
-              maxLines: 2,
-              onTap: () {
-                //TODO: check if user is logged in
-              },
+              maxLength: 20,
+
               onFieldSubmitted: (value) {
-                print(value);
+                if(value!=null && value!=""){
+                  MyApp.socket?.write("add to comments:${widget.data.title}:$value:$satisfaction\u0000");
+                  MyApp.socket?.flush();
+                  MyApp.stream?.listen((data) {
+                    print(String.fromCharCodes(data));
+                    if (String.fromCharCodes(data) == "added") {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Added to comments'),
+                        ),
+                      );
+                    } else if(String.fromCharCodes(data) == "failed"){
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Sign in to add to comments'),
+                        ),
+                      );
+                    }
+                  });
+                }
               },
               //TODO: add comment to server
               decoration: InputDecoration(
@@ -272,8 +316,12 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             itemCount: widget.data.comments?.keys.length,
             itemBuilder: (context, index) {
               var score = '';
-              if (widget.data.comments?[widget.data.comments?.keys.elementAt(index)]['score'] !=0) {
-                score = widget.data.comments?[widget.data.comments?.keys.elementAt(index)]['score'] + '⭐\n';
+              if (widget.data.comments?[
+                      widget.data.comments?.keys.elementAt(index)]['score'] !=
+                  "0") {
+                score = widget.data.comments?[
+                        widget.data.comments?.keys.elementAt(index)]['score'] +
+                    '⭐\n';
               }
               return Row(
                 children: [
@@ -312,7 +360,8 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
                             ),
                           ),
                           Text(
-                            widget.data.comments?[widget.data.comments?.keys.elementAt(index)]['view'],
+                            widget.data.comments?[widget.data.comments?.keys
+                                .elementAt(index)]['view'],
                             style: TextStyle(
                               fontSize: 15,
                             ),
@@ -345,7 +394,32 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
             Container(
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (MyApp.socket == null) {
+                      MyApp.startConnection();
+                    }
+
+                  
+                    MyApp.socket
+                        ?.write("add to cart:${widget.data.title}\u0000");
+                   await MyApp.socket?.flush();
+                    MyApp.stream?.listen((event) {
+                      print(String.fromCharCodes(event));
+                      if (String.fromCharCodes(event) == "added") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to Cart'),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Could not add to Cart'),
+                          ),
+                        );
+                      }
+                    });
+                  },
                   child: Text(
                     'Add to cart',
                     style: TextStyle(
@@ -383,7 +457,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
       child: ListView.builder(
           padding: EdgeInsets.all(4),
           scrollDirection: Axis.horizontal,
-          itemCount:widget.data.colors.length,
+          itemCount: widget.data.colors.length,
           itemBuilder: (context, index) {
             return Row(
               children: [
@@ -449,12 +523,12 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
                 },
                 icon: Icon(
                   Icons.circle,
-                  color: Color(int.parse(fakeData["Color"][index].split(":")[
-                      1])), //TODO: get color from server and converting from string may be wrong!
+                  color: Color(int.parse(
+                      widget.colorConvertor[widget.data.colors[index]])),
                 ),
               )
             ]),
-            Text(fakeData["Color"][index].split(":")[0],
+            Text(widget.data.colors.elementAt(index),
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: 13,
@@ -474,7 +548,7 @@ class _EveryGoodBuyPageState extends State<EveryGoodBuyPage> {
       width: 40,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 3,
+        itemCount: widget.data.image.length,
         itemBuilder: (context, index) {
           if (state == index) {
             return Container(

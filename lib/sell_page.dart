@@ -232,9 +232,11 @@ class _SellPageState extends State<SellPage> {
                           ),
                           validator: (value) {
 
+
                             if (value == null || value == "") {
                               return 'Please enter some text';
                             }
+
                             return null;
                           },
                         ),

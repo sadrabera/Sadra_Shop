@@ -69,10 +69,10 @@ class BuyPage extends StatelessWidget {
                             price: allDigitalGoods[temp]['price'],
                             rate: allDigitalGoods[temp]['rate'],
                             owner: allDigitalGoods[temp]['owner'],
-                            colors: allDigitalGoods[temp]['colors'],
-                            sizes: allDigitalGoods[temp]['sizes'],
+                            colors: allDigitalGoods[temp]['Colors'],
+                            sizes: allDigitalGoods[temp]['Sizes'],
                             comments: allDigitalGoods[temp]['comments'],
-                            ownerNickName: allDigitalGoods[temp]['ownerNickName'],
+                            ownerNickName: allDigitalGoods[temp]['ownerNickname'],
                           ),
                         );
                       }

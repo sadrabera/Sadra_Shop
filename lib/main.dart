@@ -376,47 +376,54 @@ class _MyAppState extends State<MyApp> {
                     Center(
                       child: ElevatedButton(
                         onPressed: () async {
-                          // Validate returns true if the form is valid, or false otherwise.
-                          if (_fromKey.currentState!.validate()) {
-                            // If the form is valid, display a snackbar. In the real world,
-                            // you'd often call a server or save the information in a database.
-                            String name = _nameController.text;
-                            String phoneNumber =
-                                _registerPhoneNumberController.text;
-                            String password = _registerPasswordController.text;
-                            String email = _emailController.text;
-                            String place = _placeController.text;
-                            while (true) {
-                              try {
-                                MyApp.socket!.write(
-                                  'register:$name:$phoneNumber:$password:$email:$place\u0000',
-                                );
-                                await MyApp.socket?.flush();
-                                break;
-                              } catch (e) {
-                                await MyApp.startConnection();
+                          try {
+                            // Validate returns true if the form is valid, or false otherwise.
+                            if (_fromKey.currentState!.validate()) {
+                              // If the form is valid, display a snackbar. In the real world,
+                              // you'd often call a server or save the information in a database.
+                              String name = _nameController.text;
+                              String phoneNumber =
+                                  _registerPhoneNumberController.text;
+                              String password = _registerPasswordController
+                                  .text;
+                              String email = _emailController.text;
+                              String place = _placeController.text;
+                              while (true) {
+                                try {
+                                  MyApp.socket!.write(
+                                    'register:$name:$phoneNumber:$password:$email:$place\u0000',
+                                  );
+                                  await MyApp.socket?.flush();
+                                  break;
+                                } catch (e) {
+                                  await MyApp.startConnection();
+                                }
                               }
+                              MyApp.stream!.listen((event) {
+                                String responseString =
+                                String.fromCharCodes(event);
+                                if (responseString == "register success") {
+                                  Navigator.of(context).pop();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text('Register Successful')),
+                                  );
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => ProfilePage(),
+                                    ),
+                                  );
+                                } else
+                                if (responseString == "register failed") {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Register Failed')),
+                                  );
+                                }
+                              });
                             }
-                            MyApp.stream!.listen((event) {
-                              String responseString =
-                                  String.fromCharCodes(event);
-                              if (responseString == "register success") {
-                                Navigator.of(context).pop();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text('Register Successful')),
-                                );
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => ProfilePage(),
-                                  ),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('Register Failed')),
-                                );
-                              }
-                            });
+                          } catch (e,s) {
+                            print(e);
+                            print(s);
                           }
                         },
                         child: Text("Register"),
